@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import MyContext from './context';
+import MyInfo from './MyInfo';
 import './App.css';
 
 function App() {
+
+  const [hooksState, changeHooksState] = useState({
+    name: 'Jaime',
+    lastName: 'Jacobo',
+    infected: false
+  });
+
+  const stateAndFunction = {hooksState, changeHooksState}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyContext.Provider value={stateAndFunction}>
+      <div className="App">
+        <h1>Hola mi nombre es {hooksState.name}</h1>
+        <MyInfo />
+      </div>      
+    </MyContext.Provider>
   );
 }
 
